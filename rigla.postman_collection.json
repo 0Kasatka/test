@@ -1,0 +1,429 @@
+{
+	"info": {
+		"_postman_id": "ca41ddab-801a-481b-a56c-e2e50b279679",
+		"name": "rigla",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "38592225"
+	},
+	"item": [
+		{
+			"name": "авторизация",
+			"item": [
+				{
+					"name": "/email/",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Your test name detail\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.detail).to.eql(\"Токен был отправлен на почту\");\r",
+									"});\r",
+									"pm.test(\"Your test name codeLength\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.codeLength).to.eql(5);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "accept-charset",
+								"value": "UTF-8",
+								"type": "default"
+							},
+							{
+								"key": "user-agent",
+								"value": "Ktor client",
+								"type": "default"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"{{email}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/auth/otp/email/"
+					},
+					"response": []
+				},
+				{
+					"name": "/token/",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "accept-charset",
+								"value": "UTF-8",
+								"type": "default"
+							},
+							{
+								"key": "user-agent",
+								"value": "Ktor client",
+								"type": "default"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"l.kasatkina@napoleonit.ru\",\r\n  \"token\": \"79643\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/auth/otp/token/"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get",
+			"item": [
+				{
+					"name": "/tasks/",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "accept-charset",
+								"value": "UTF-8",
+								"type": "default"
+							},
+							{
+								"key": "user-agent",
+								"value": "Ktor client",
+								"type": "default"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/merch/mobile/tasks/"
+					},
+					"response": []
+				},
+				{
+					"name": "/profile/",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzIzMTA3OTgwLCJpYXQiOjE3MjMwMjE1ODAsImp0aSI6IjYzY2I4ZjMyOGYxMjQzZDJhY2ZiMzE5NzMzNWQ4NTg4IiwidXNlcl9pZCI6MTJ9.DWGoSILMTRcIVjNasKnZQ6YqaO-r1mzCvarWlt0oHT0",
+								"type": "default"
+							},
+							{
+								"key": "accept",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "accept-charset",
+								"value": "UTF-8",
+								"type": "default"
+							},
+							{
+								"key": "user-agent",
+								"value": "Ktor client",
+								"type": "default"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"l.kasatkina@napoleonit.ru\",\r\n  \"groups\": [\r\n    1\r\n  ],\r\n  \"id\": 12,\r\n  \"username\": \"l.kasatkina\",\r\n  \"externalId\": \"Касаткина Людмила\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/auth/profile/"
+					},
+					"response": []
+				},
+				{
+					"name": "/instructions/",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "accept-charset",
+								"value": "UTF-8",
+								"type": "default"
+							},
+							{
+								"key": "user-agent",
+								"value": "Ktor client",
+								"type": "default"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n  {\r\n    \"name\": \"General\"\r\n    \"instructions\": [\r\n      \"Выберите активную задачу из списка\",\r\n      \"Находясь рядом с торговой точкой, нажмите \\\"Начать мониторинг\\\"\",\r\n      \"Сфотографируйте товарную полку\",\r\n      \"Отправьте фотографии на распознавание\"\r\n    ]\r\n  }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/merch/mobile/instructions/"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "выполениние задачи",
+			"item": [
+				{
+					"name": "/check-in/",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "accept-charset",
+								"value": "UTF-8",
+								"type": "default"
+							},
+							{
+								"key": "user-agent",
+								"value": "Ktor client",
+								"type": "default"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/merch/mobile/tasks/{{id}}/check-in/"
+					},
+					"response": []
+				},
+				{
+					"name": "/confirm-upload/",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "accept-charset",
+								"value": "UTF-8",
+								"type": "default"
+							},
+							{
+								"key": "user-agent",
+								"value": "Ktor client",
+								"type": "default"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"failedIds\": [\r\n    \"0\"\r\n  ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/merch/mobile/tasks/{{id}}/confirm-upload/"
+					},
+					"response": []
+				},
+				{
+					"name": "/photos/",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json",
+								"type": "default"
+							},
+							{
+								"key": "accept-charset",
+								"value": "UTF-8",
+								"type": "default"
+							},
+							{
+								"key": "user-agent",
+								"value": "Ktor client",
+								"type": "default"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"filenames\": [\r\n    \"1724759866712.jpg\"\r\n  ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/merch/mobile/tasks/{{id}}/photos/"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
